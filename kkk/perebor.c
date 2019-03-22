@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/03/22 18:09:55 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/03/22 19:39:43 by jijerde          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,28 @@ char	*ft_tet(char *str, char *tmp, int fd, int ret, char *buf)
 
 char	*fill_map(char *str)
 {
-	int		mp_ln;
-	int		mp_sd;
+	int		cmp_ln;
+	int		cmp_sd;
 	char	*map;
-	int		str_i;
-	int		map_i;
-	int		x_i;
+	int		cmp_rln;
+//	int		str_i;
+//	int		map_i;
+//	int		x_i;
 	int		fl_i;
 
 	fl_i = 0;
-	x_i = 4;
+//	x_i = 4;
 //	map_i = 0;
-	str_i = 0;
-	mp_sd = 1;
-	mp_ln = (ft_strlen(str) / 9) * 4;
-	while (mp_sd * mp_sd < mp_ln)
-		mp_sd++;
+//	str_i = 0;
+	cmp_sd = 1;
+	cmp_ln = ft_strlen(str) / 9 * 4;
+	while (cmp_sd * cmp_sd < cmp_ln)
+		cmp_sd++;
+	cmp_rln = ((cmp_sd + 1) * cmp_sd) - 1;
 	map = ft_strnew(131);
-	while (fl_i < (mp_sd * (mp_sd + 1) - 1))
+	while (fl_i < (cmp_sd * (cmp_sd + 1) - 1))
 	{
-		if ((fl_i + 1) % (mp_sd + 1) != 0 || fl_i == 0)
+		if ((fl_i + 1) % (cmp_sd + 1) != 0 || fl_i == 0)
 		{
 			map[fl_i] = '.';
 			fl_i++;
@@ -87,7 +89,7 @@ char	*fill_map(char *str)
 		}
 	}
 	map[fl_i] = '\0';
-	while (mp_ln / 4)
+	/*  while (mp_ln / 4)
 	{
 		map_i = 0;
 		while (str_i < x_i)
@@ -100,9 +102,9 @@ char	*fill_map(char *str)
 				str_i++;
 				map_i++;
 		}
-		x_i += 
+		x_i +=
 		mp_ln--;
-	}
+	}*/
 	return (map);
 }
 
