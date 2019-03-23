@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/03/23 20:08:24 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/03/23 20:49:32 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,48 @@ char	*ft_bf(char *str, char *map, int cmp_sd, int cmp_rln)
 		while ()
 }
 */
+char	*one_or_zero(char *str, char *map, int cmp_ln, int fl_i, int cmp_sd)
+{
+	int		map_i;
+	int		str_i;
+	int		lett;
+	int		doter;
+
+	map_i = 0;
+	str_i = 0;
+	lett = 4;
+	doter = 0;
+	while ((cmp_ln -= 4) >= 0)
+	{
+		map_i = 0;
+		while (str_i < lett && map_i < fl_i)
+		{
+				map_i = doter + (str[str_i] - 48) + (str[str_i + 4] - 48) * (cmp_sd + 1);
+				if (map[map_i] == '.')
+				{
+					map[map_i] = str[lett + 4];
+					str_i++;
+				}
+				else
+					doter++;
+				map_i++;
+		}
+		str_i += 5;
+		lett += 9;
+//		cmp_ln -= 4;
+	}
+	return (map);
+}
+
 char	*fill_map(char *str)
 {
 	int		cmp_ln;
 	int		cmp_sd;
 	char	*map;
 	int		cmp_rln;
-	int		str_i;
-	int		map_i;
-	int		x_i;
 	int		fl_i;
-	int		kek;
 
-	kek = 0;
 	fl_i = 0;
-	x_i = 4;
-	map_i = 0;
-	str_i = 0;
 	cmp_sd = 1;
 	cmp_ln = ft_strlen(str) / 9 * 4;
 	while (cmp_sd * cmp_sd < cmp_ln)
@@ -105,27 +130,11 @@ char	*fill_map(char *str)
 		}
 	}
 	map[fl_i] = '\0';
-	while ((cmp_ln -= 4) >= 0)
-	{
-		map_i = 0;
-		while (str_i < x_i)
-		{
-				map_i = kek + (str[str_i] - 48) + (str[str_i + 4] - 48) * (cmp_sd + 1);
-				if (map[map_i] == '.')
-				{
-					map[map_i] = str[x_i + 4];
-					str_i++;
-				}
-				else
-					kek++;
-				map_i++;
-		}
-		str_i += 5;
-		x_i += 9;
-//		cmp_ln -= 4;
-	}
+	map = one_or_zero(str, map, cmp_ln, fl_i, cmp_sd);
 	return (map);
 }
+
+
 
 int		main(int argc, char **argv)
 {
