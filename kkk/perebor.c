@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/03/22 19:39:43 by jijerde          ###   ########.fr       */
+/*   Updated: 2019/03/23 20:08:24 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,38 @@ char	*ft_tet(char *str, char *tmp, int fd, int ret, char *buf)
 	}
 	return (str);
 }
+/*
+char	*ft_bf(char *str, char *map, int cmp_sd, int cmp_rln)
+{
+	int		str_i;
+	int		map_i;
+	int		let_i;
 
+	str_i = 0;
+	map_i = 0;
+	let_i = 5; // str_i + let_i = 8 на первой итерации
+
+	if (map_i >= cmp_rln)
+		while ()
+}
+*/
 char	*fill_map(char *str)
 {
 	int		cmp_ln;
 	int		cmp_sd;
 	char	*map;
 	int		cmp_rln;
-//	int		str_i;
-//	int		map_i;
-//	int		x_i;
+	int		str_i;
+	int		map_i;
+	int		x_i;
 	int		fl_i;
+	int		kek;
 
+	kek = 0;
 	fl_i = 0;
-//	x_i = 4;
-//	map_i = 0;
-//	str_i = 0;
+	x_i = 4;
+	map_i = 0;
+	str_i = 0;
 	cmp_sd = 1;
 	cmp_ln = ft_strlen(str) / 9 * 4;
 	while (cmp_sd * cmp_sd < cmp_ln)
@@ -89,22 +105,25 @@ char	*fill_map(char *str)
 		}
 	}
 	map[fl_i] = '\0';
-	/*  while (mp_ln / 4)
+	while ((cmp_ln -= 4) >= 0)
 	{
 		map_i = 0;
 		while (str_i < x_i)
 		{
-				map_i = (str[str_i] - 48) + (str[str_i + 4] - 48) * (mp_sd + 1);
+				map_i = kek + (str[str_i] - 48) + (str[str_i + 4] - 48) * (cmp_sd + 1);
 				if (map[map_i] == '.')
+				{
 					map[map_i] = str[x_i + 4];
+					str_i++;
+				}
 				else
-					printf("kekeslales\n");
-				str_i++;
+					kek++;
 				map_i++;
 		}
-		x_i +=
-		mp_ln--;
-	}*/
+		str_i += 5;
+		x_i += 9;
+//		cmp_ln -= 4;
+	}
 	return (map);
 }
 
