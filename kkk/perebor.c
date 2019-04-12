@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/03/23 20:49:32 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/04/12 16:48:29 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,73 +68,94 @@ char	*ft_bf(char *str, char *map, int cmp_sd, int cmp_rln)
 		while ()
 }
 */
-char	*one_or_zero(char *str, char *map, int cmp_ln, int fl_i, int cmp_sd)
+char	*let_or_net(char *str, char *map, int cmp_ln, /*int flill*/ int cmp_sd)
 {
 	int		map_i;
 	int		str_i;
 	int		lett;
 	int		doter;
+	int		fill;
 
 	map_i = 0;
 	str_i = 0;
 	lett = 4;
 	doter = 0;
-	while ((cmp_ln -= 4) >= 0)
+	fill = ((cmp_sd + 1) * cmp_sd) - 2;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	/*  while ((cmp_ln -= 4) >= 0)
 	{
 		map_i = 0;
-		while (str_i < lett && map_i < fl_i)
+		while (str_i < lett && map_i < fill) // цикл до буквы в осн массиве и до ласт элем в мапе
 		{
-				map_i = doter + (str[str_i] - 48) + (str[str_i + 4] - 48) * (cmp_sd + 1);
-				if (map[map_i] == '.')
-				{
-					map[map_i] = str[lett + 4];
-					str_i++;
-				}
-				else
-					doter++;
-				map_i++;
+			map_i = doter + (str[str_i] - 48) + (str[str_i + 4] - 48) * (cmp_sd + 1);
+			if (map[map_i] == '.')
+			{
+				map[map_i] = str[lett + 4];
+				str_i++;
+			}
+			else
+				doter++;
+			map_i++;
 		}
 		str_i += 5;
 		lett += 9;
-//		cmp_ln -= 4;
 	}
 	return (map);
-}
-
-char	*fill_map(char *str)
+}*/
+/*
+char	*bigmap(char *str) // размер карты и ее заполнение '.' и '\n'.
 {
-	int		cmp_ln;
-	int		cmp_sd;
+//	int		cmp_ln;
+//	int		cmp_sd;
 	char	*map;
-	int		cmp_rln;
-	int		fl_i;
+//	int		cmp_rln;
+//	int		fill;
 
-	fl_i = 0;
-	cmp_sd = 1;
-	cmp_ln = ft_strlen(str) / 9 * 4;
-	while (cmp_sd * cmp_sd < cmp_ln)
-		cmp_sd++;
-	cmp_rln = ((cmp_sd + 1) * cmp_sd) - 1;
+//	fill = 0;
+//	cmp_sd = ft_sqrt(str);
+//	cmp_ln = ft_strlen(str) / 9 * 4;
+//	cmp_rln = ((cmp_sd + 1) * cmp_sd) - 1;
 	map = ft_strnew(131);
-	while (fl_i < (cmp_sd * (cmp_sd + 1) - 1))
+//	map = mapper(cmp_sd, map);
+//	//map = let_or_net(str, map, cmp_ln, fill cmp_sd);
+//	return (map);
+}
+*/
+char	*mapper(int cmp_sd)
+{
+	char	*map;
+	int		fill;
+
+	fill = 0;
+	map = ft_strnew(131);
+	while (fill < (cmp_sd * (cmp_sd + 1) - 1))
 	{
-		if ((fl_i + 1) % (cmp_sd + 1) != 0 || fl_i == 0)
+		if ((fill + 1) % (cmp_sd + 1) != 0 || fill == 0)
 		{
-			map[fl_i] = '.';
-			fl_i++;
+			map[fill] = '.';
+			fill++;
 		}
 		else
 		{
-			map[fl_i] = '\n';
-			fl_i++;
+			map[fill] = '\n';
+			fill++;
 		}
 	}
-	map[fl_i] = '\0';
-	map = one_or_zero(str, map, cmp_ln, fl_i, cmp_sd);
+	map[fill] = '\0';
 	return (map);
 }
-
-
 
 int		main(int argc, char **argv)
 {
@@ -149,12 +170,11 @@ int		main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY);
 		str = ft_tet(str, tmp, fd, ret, buf);
 		printf("\n%s\n", str);
-		str = fill_map(str);
+//		str = bigmap(str);
+		str = solve(str, sqrt(str));
 		printf("%s\n", str);
 	}
 	else
-	{
 		printf("Error: No more than 1 argument.");
-	}
 	return (0);
 }
