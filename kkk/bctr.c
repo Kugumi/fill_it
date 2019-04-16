@@ -6,15 +6,18 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 15:25:27 by dstracke          #+#    #+#             */
-/*   Updated: 2019/04/12 18:22:40 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/04/16 05:47:20 by jijerde          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*paste(char *map, char *str, int str_i, int cmp_sd)
+#include "fillit.h"
+
+char	*paste(char *map, char *str, int cmp_sd)
 {
 	int		box[4];
 	int		i;
 	int		d;
+	int		str_i;
 
 	i = 0;
 	d = 0;
@@ -30,7 +33,7 @@ char	*paste(char *map, char *str, int str_i, int cmp_sd)
 		{
 			while (--i != 0)
 				map[box[i] + d] = str[str_i + 4];
-			return (map); // возврат карты заполненной фигурой, но необходим какой-то счетчик внешний для сохранения указателя на то место, где перестановка фигурки.
+			return (map);
 		}
 		d++;
 	}
@@ -49,45 +52,53 @@ int		ft_sqrt(char *str)
 	return (cmp_sd);
 }
 
-char	*solve(char *str, int cmp_sd)
+void	ft_remove(char **map, t_tetr *tetr)
 {
-	int		cmp_sd;
-	char	*map;
-	int		str_i;
-
-	str_i = 0;
-	cmp_sd = ft_sqrt(str);
-	map = mapper(cmp_sd);
-	while (!bctr(map, str, str_i, cmp_sd)) // здесь нужно в конце каким-то образом вернуть заполненную карту
+	int i;
+	char tmp[10] = "";
+	char	*s;
+	s = ft_strcpy(tmp, tetr->fig);
+	i = 0;
+	while (*map[i])
 	{
-		map = mapper(cmp_sd);
-		cmp_sd++;
+		if (*map[i] == s[9])
+			*map[i] = '.';
+		i++;
 	}
-	return (map);
 }
-
-static bool	bctr(char *map, char *str, int str_i, int cmp_sd)
+char	*bctr(char *map, t_tetr *tetr, int cmp_sd)
 {
-	if (!str[str_i])
-		return (0);
-	while (1) // пока непонятно за счет чего будем циклить
+
+	while (*map)
 	{
-		if (paste(map, str, str_i, cmp_sd)) // если встала фигура
+		if ((map = paste(map, tetr->fig, cmp_sd)))
 		{
-			if (bctr(map, str, str_i + 9, cmp_sd)) // пробуем некст, но как уже писалось ранне - нужен якорь, который даст возможность ставить текущую фигуру после предыдущей в самой мапе
-				return (1);
-			else
-			{
-				ft_remove(map, str, str_i); // для фии ремува нужен якорь для очистки пред текущей, не подставленной фигуры, но мб можно обойтись без этого
-				return (bctr(map, str, str_i, cmp_sd))
-			}
+			if (tetr->next == NULL)
+				return (map);
+			bctr(map, tetr->next, cmp_sd);
 		}
-		str_i += 9;
+		else
+		{
+			ft_remove(&map, tetr);
+			map++;
+		}
 	}
 	return (0);
 }
 
-char	*ft_remove(char *map, char *str, int str_i)
+char	*solve(char *str, t_tetr *tetr, int cmp_sd)
 {
-	
+	char	*map;
+	char	*tmpmp;
+	int		str_i;
+
+	str_i = 0;
+	map = ft_strnew(131);
+	mapper(cmp_sd, &map);
+	while (!(bctr(map, tetr, cmp_sd)))
+	{
+		cmp_sd++;
+		map = mapper(cmp_sd, &map);
+	}
+	return (map);
 }

@@ -6,24 +6,15 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/04/12 16:48:29 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/04/16 05:43:48 by jijerde          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-#include <fcntl.h>
-#include <stdio.h>
-# define BUFF_SIZE 21
+#include "fillit.h"
 
-int		ft_connect_count(char *s, int i);
-int		ft_check_backslash(char *s, int i, int ret);
-int		ft_prov_kol(int i, int j, int ret, int t);
-int		ft_validate(char *buf, int ret);
-char	*ft_cuttetr(char *tmp);
-char	*ft_cup(char *buf, char *c);
-
-char	*ft_tet(char *str, char *tmp, int fd, int ret, char *buf)
+char	*ft_tet(char *str, int fd, int ret, char *buf)
 {
+	char *tmp;
 	static char	c = '@';
 
 	str = ft_strnew(0);
@@ -68,7 +59,7 @@ char	*ft_bf(char *str, char *map, int cmp_sd, int cmp_rln)
 		while ()
 }
 */
-char	*let_or_net(char *str, char *map, int cmp_ln, /*int flill*/ int cmp_sd)
+/*  char	*let_or_net(char *str, char *map, int cmp_ln, int flill int cmp_sd)
 {
 	int		map_i;
 	int		str_i;
@@ -81,7 +72,6 @@ char	*let_or_net(char *str, char *map, int cmp_ln, /*int flill*/ int cmp_sd)
 	lett = 4;
 	doter = 0;
 	fill = ((cmp_sd + 1) * cmp_sd) - 2;
-	
 
 
 
@@ -94,7 +84,8 @@ char	*let_or_net(char *str, char *map, int cmp_ln, /*int flill*/ int cmp_sd)
 
 
 
-	/*  while ((cmp_ln -= 4) >= 0)
+
+	  while ((cmp_ln -= 4) >= 0)
 	{
 		map_i = 0;
 		while (str_i < lett && map_i < fill) // цикл до буквы в осн массиве и до ласт элем в мапе
@@ -133,45 +124,44 @@ char	*bigmap(char *str) // размер карты и ее заполнение 
 //	return (map);
 }
 */
-char	*mapper(int cmp_sd)
+char	*mapper(int cmp_sd, char **map)
 {
-	char	*map;
 	int		fill;
 
 	fill = 0;
-	map = ft_strnew(131);
 	while (fill < (cmp_sd * (cmp_sd + 1) - 1))
 	{
 		if ((fill + 1) % (cmp_sd + 1) != 0 || fill == 0)
 		{
-			map[fill] = '.';
+			*map[fill] = '.';
 			fill++;
 		}
 		else
 		{
-			map[fill] = '\n';
+			*map[fill] = '\n';
 			fill++;
 		}
 	}
-	map[fill] = '\0';
-	return (map);
+	*map[fill] = '\0';
+	return (*map);
 }
 
 int		main(int argc, char **argv)
 {
 	int			fd;
-	char		*tmp;
 	char		buf[22];
 	char		*str;
 	int			ret;
+	t_tetr 		*tetr;
 
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		str = ft_tet(str, tmp, fd, ret, buf);
+		str = ft_tet(str, fd, ret, buf);
+		tetr = tlist(str);
 		printf("\n%s\n", str);
 //		str = bigmap(str);
-		str = solve(str, sqrt(str));
+		str = solve(str, tetr, ft_sqrt(str));
 		printf("%s\n", str);
 	}
 	else

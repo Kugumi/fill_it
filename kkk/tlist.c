@@ -6,7 +6,7 @@
 /*   By: jijerde <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 00:36:43 by jijerde           #+#    #+#             */
-/*   Updated: 2019/04/16 02:40:42 by jijerde          ###   ########.fr       */
+/*   Updated: 2019/04/16 05:45:20 by jijerde          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_tetr *tlist(char *str)
 	}
 	tetr->next = NULL;
 	return (nachalo);
-}
+}/*
 int main()
 {
 	t_tetr *priv;
@@ -70,4 +70,4 @@ int main()
 		i--;
 	}
 	//printf("%s\n", priv->fig);
-}
+}*/
