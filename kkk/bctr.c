@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 15:25:27 by dstracke          #+#    #+#             */
-/*   Updated: 2019/04/16 05:47:20 by jijerde          ###   ########.fr       */
+/*   Updated: 2019/04/18 19:42:49 by jijerde          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*paste(char *map, char *str, int cmp_sd)
 
 	i = 0;
 	d = 0;
+	str_i = 0;
 	while (i < 4)
 	{
 		box[i] = (str[str_i] - 48) + (str[str_i + 4] - 48) * (cmp_sd + 1);
@@ -31,7 +32,7 @@ char	*paste(char *map, char *str, int cmp_sd)
 	{
 		if (map[box[0] + d] == '.' && map[box[1] + d] == '.' && map[box[2] + d] == '.' && map[box[3] + d] == '.')
 		{
-			while (--i != 0)
+			while (i-- != 0)
 				map[box[i] + d] = str[str_i + 4];
 			return (map);
 		}
@@ -59,15 +60,16 @@ void	ft_remove(char **map, t_tetr *tetr)
 	char	*s;
 	s = ft_strcpy(tmp, tetr->fig);
 	i = 0;
-	while (*map[i])
+	while (map[0][i])
 	{
-		if (*map[i] == s[9])
-			*map[i] = '.';
+		if (map[0][i] == s[9])
+			map[0][i] = '.';
 		i++;
 	}
 }
 char	*bctr(char *map, t_tetr *tetr, int cmp_sd)
 {
+    char    *t;
 
 	while (*map)
 	{
@@ -75,7 +77,9 @@ char	*bctr(char *map, t_tetr *tetr, int cmp_sd)
 		{
 			if (tetr->next == NULL)
 				return (map);
-			bctr(map, tetr->next, cmp_sd);
+			t = bctr(map, tetr->next, cmp_sd);
+			if (t)
+			    return (t);
 		}
 		else
 		{

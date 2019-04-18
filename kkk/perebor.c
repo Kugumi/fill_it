@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/04/16 05:43:48 by jijerde          ###   ########.fr       */
+/*   Updated: 2019/04/18 19:42:23 by jijerde          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,17 +133,17 @@ char	*mapper(int cmp_sd, char **map)
 	{
 		if ((fill + 1) % (cmp_sd + 1) != 0 || fill == 0)
 		{
-			*map[fill] = '.';
+            map[0][fill] = '.';
 			fill++;
 		}
 		else
 		{
-			*map[fill] = '\n';
+			map[0][fill] = '\n';
 			fill++;
 		}
 	}
-	*map[fill] = '\0';
-	return (*map);
+	map[0][fill] = '\0';
+	//return (map);
 }
 
 int		main(int argc, char **argv)
