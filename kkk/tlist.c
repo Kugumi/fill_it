@@ -6,7 +6,7 @@
 /*   By: jijerde <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 00:36:43 by jijerde           #+#    #+#             */
-/*   Updated: 2019/04/16 05:45:20 by jijerde          ###   ########.fr       */
+/*   Updated: 2019/04/29 22:57:18 by jijerde          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_tetr *firstlist(char *str)
 	i = 0;
 	tetr = (t_tetr *)malloc(sizeof(t_tetr));
 	tetr->next = NULL;
+	tetr->prev = NULL;
 	tetr->fig = (char *)malloc(sizeof(char) * 10);
 	tmp[9] = '\0';
 	while (i < 9)
@@ -39,6 +40,7 @@ t_tetr *tlist(char *str)
 	int str_i;
 	t_tetr *tetr;
 	t_tetr *nachalo;
+	t_tetr *temp;
 	char tmp[10];
 
 	str_i = 9;
@@ -48,7 +50,9 @@ t_tetr *tlist(char *str)
 	while (str[str_i] && !(i = 0))
 	{
 		tetr->next = (t_tetr *)malloc(sizeof(t_tetr));
+		temp = tetr;
 		tetr=tetr->next;
+		tetr->prev = temp;
 		tetr->fig = (char *)malloc(sizeof(char) * 10);
 		while (i < 9)
 			tmp[i++] = str[str_i++];
