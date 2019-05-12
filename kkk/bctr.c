@@ -86,10 +86,7 @@ int		bctr(char *map, t_tetr *tetr, int cmp_sd)
 char	*solve(char *str, t_tetr *tetr, int cmp_sd)
 {
 	char	*map;
-	char	*tmpmp;
-	int		str_i;
 
-	str_i = 0;
 	map = ft_strnew(131);
 	mapper(cmp_sd, &map);
 	while (!bctr(map, tetr, cmp_sd))

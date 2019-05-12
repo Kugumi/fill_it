@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdio.h"
-#include "./libft/libft.h"
-#include <fcntl.h>
-# define BUFF_SIZE 21
+#include "fillit.h"
 
 int		ft_connect_count(char *s, int i)
 {
@@ -33,7 +30,7 @@ int		ft_connect_count(char *s, int i)
 
 int		ft_check_backslash(char *s, int i, int ret)
 {
-	if (ret == 20)
+	if (ret == 19)
 	{
 		if (i == 4 || i == 9 || i == 14 || i == 19)
 			return (1);
@@ -55,7 +52,7 @@ int		ft_prov_kol(int i, int j, int ret, int t)
 {
 	if (ret == 21 && (i == 6 || i == 8) && j == 5 && t == 4)
 		return (1);
-	else if (ret == 20 && (i == 6 || i == 8) && j == 4 && t == 4)
+	else if (ret == 19 && (i == 6 || i == 8) && j == 3 && t == 4)
 		return (1);
 	else
 		return (0);
@@ -164,54 +161,3 @@ char	*ft_cup(char *buf, char *c)
 	printf("%s", tmp);
 	return (tmp);
 }
-/*
-int		main(int argc, char **argv)
-{
-	int			fd;
-	char 		*tmp;
-	char 		buf[22];
-	char		*str;
-	int			ret;
-	static char	c = '@';
-
-	if (argc == 2)
-	{
-		str = ft_strnew(0);
-		fd = open(argv[1], O_RDONLY);
-		while ((ret = read(fd, buf, 21)) > 20)
-		{
-			buf[ret] = '\0';
-			if (ft_validate(buf, ret))
-			{
-				tmp = ft_strjoin(str, ft_cuttetr(ft_cup(buf, &c)));
-				free(str);
-				str = tmp;
-			}
-			else
-			{
-				printf("validation failed");
-				break ;
-			}
-		}
-		if (ret < 21)
-		{
-			buf[ret] = '\0';
-			if (ft_validate(buf, ret))
-			{
-				tmp = ft_strjoin(str, ft_cuttetr(ft_cup(buf, &c)));
-				free(str);
-				str = tmp;
-			}
-			else
-				printf("k\n");
-		}
-		printf("\n%s\n", str);
-		free(str);
-	}
-	else
-	{
-		printf("Error: No more than 1 argument.");
-	}
-	return (0);
-}
-*/

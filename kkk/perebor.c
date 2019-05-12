@@ -12,13 +12,11 @@
 
 #include "fillit.h"
 
-char	*ft_tet(char *str, int fd, int ret, char *buf)
+char 	*buf19(int ret, char *str, char *buf, char *c)
 {
-	char *tmp;
-	static char	c = '@';
+	char	*tmp;
 
-	str = ft_strnew(0);
-	while ((ret = read(fd, buf, 21)) > 20)
+	if (ret == 19)
 	{
 		buf[ret] = '\0';
 		if (ft_validate(buf, ret))
@@ -28,102 +26,44 @@ char	*ft_tet(char *str, int fd, int ret, char *buf)
 			str = tmp;
 		}
 		else
-			break ;
+		{
+			write(1, "error\n", 6);
+			return (NULL);
+		}
 	}
-	if (ret < 21)
+	else
 	{
-		buf[ret] = '\0';
-		if (ft_validate(buf, ret))
-		{
-			tmp = ft_strjoin(str, ft_cuttetr(ft_cup(buf, &c)));
-			free(str);
-			str = tmp;
-		}
-		else
-			printf("kall");
+		write(1, "error\n", 6);
+		return (NULL);
 	}
 	return (str);
 }
-/*
-char	*ft_bf(char *str, char *map, int cmp_sd, int cmp_rln)
+
+char	*ft_tet(char *str, int fd, int ret, char *buf)
 {
-	int		str_i;
-	int		map_i;
-	int		let_i;
+	char		*tmp;
+	static char	c = '@';
 
-	str_i = 0;
-	map_i = 0;
-	let_i = 5; // str_i + let_i = 8 на первой итерации
-
-	if (map_i >= cmp_rln)
-		while ()
-}
-*/
-/*  char	*let_or_net(char *str, char *map, int cmp_ln, int flill int cmp_sd)
-{
-	int		map_i;
-	int		str_i;
-	int		lett;
-	int		doter;
-	int		fill;
-
-	map_i = 0;
-	str_i = 0;
-	lett = 4;
-	doter = 0;
-	fill = ((cmp_sd + 1) * cmp_sd) - 2;
-
-
-
-
-
-
-
-
-
-
-
-
-
-	  while ((cmp_ln -= 4) >= 0)
+	str = ft_strnew(0);
+	while ((ret = read(fd, buf, 21)) == 21)
 	{
-		map_i = 0;
-		while (str_i < lett && map_i < fill) // цикл до буквы в осн массиве и до ласт элем в мапе
+		buf[ret] = '\0';
+		if (ft_validate(buf, ret))
 		{
-			map_i = doter + (str[str_i] - 48) + (str[str_i + 4] - 48) * (cmp_sd + 1);
-			if (map[map_i] == '.')
-			{
-				map[map_i] = str[lett + 4];
-				str_i++;
-			}
-			else
-				doter++;
-			map_i++;
+			tmp = ft_strjoin(str, ft_cuttetr(ft_cup(buf, &c)));
+			free(str);
+			str = tmp;
 		}
-		str_i += 5;
-		lett += 9;
+		else
+		{
+			write(1, "error\n", 6);
+			return (NULL);
+		}
 	}
-	return (map);
-}*/
-/*
-char	*bigmap(char *str) // размер карты и ее заполнение '.' и '\n'.
-{
-//	int		cmp_ln;
-//	int		cmp_sd;
-	char	*map;
-//	int		cmp_rln;
-//	int		fill;
-
-//	fill = 0;
-//	cmp_sd = ft_sqrt(str);
-//	cmp_ln = ft_strlen(str) / 9 * 4;
-//	cmp_rln = ((cmp_sd + 1) * cmp_sd) - 1;
-	map = ft_strnew(131);
-//	map = mapper(cmp_sd, map);
-//	//map = let_or_net(str, map, cmp_ln, fill cmp_sd);
-//	return (map);
+	if (ret != 21)
+		str = buf19(ret, str, buf, c);
+	return (str);
 }
-*/
 
 void	mapper(int cmp_sd, char **map)
 {
@@ -144,7 +84,6 @@ void	mapper(int cmp_sd, char **map)
 		}
 	}
 	map[0][fill] = '\0';
-	//return (map);
 }
 
 int		main(int argc, char **argv)
@@ -161,7 +100,6 @@ int		main(int argc, char **argv)
 		str = ft_tet(str, fd, ret, buf);
 		tetr = tlist(str);
 		printf("\n%s\n", str);
-//		str = bigmap(str);
 		str = solve(str, tetr, ft_sqrt(str));
 		printf("%s\n", str);
 	}

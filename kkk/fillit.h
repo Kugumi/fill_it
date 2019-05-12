@@ -26,9 +26,9 @@ typedef struct	s_tetr
 	char *fig;
  	struct	s_tetr *next;
 	struct s_tetr *prev;
-} t_tetr
-;
+} t_tetr;
 
+char 	*buf19(int ret, char *str, char *buf, char *c);
 char    *ft_tet(char *str, int fd, int ret, char *buf);
 int 	bctr(char *map, t_tetr *tetr, int cmp_sd);
 void    ft_remove(char **map, t_tetr *tetr);
