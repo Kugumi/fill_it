@@ -54,8 +54,9 @@ int		ft_sqrt(char *str)
 void	ft_remove(char **map, t_tetr *tetr, int i)
 {
 	//int i;
-	char tmp[10] = "";
+	char	tmp[10] = "";
 	char	*s;
+
 	s = ft_strcpy(tmp, tetr->fig);
 	//i = 0;
 	while (map[0][i])
@@ -75,19 +76,22 @@ int		bctr(char *map, t_tetr *tetr, int cmp_sd)
 		return (1);
 	while (++i < (cmp_sd * (cmp_sd + 1)))
 	{
-		if (paste(&map, tetr->fig, cmp_sd, i))
-			if (bctr(map, tetr->next, cmp_sd))
-				return (1);
-		ft_remove(&map, tetr, i);
+		 if (paste(&map, tetr->fig, cmp_sd, i))
+         {
+		     if (bctr(map, tetr->next, cmp_sd))
+                return (1);
+		     else
+                ft_remove(&map, tetr, i);
+		 }
 	}
 	return (0);
 }
 
-char	*solve(char *str, t_tetr *tetr, int cmp_sd)
+char	*solve(t_tetr *tetr, int cmp_sd)
 {
 	char	*map;
 
-	map = ft_strnew(1000);
+	map = ft_strnew(cmp_sd * (cmp_sd + 1));
 	mapper(cmp_sd, &map);
 	while (!bctr(map, tetr, cmp_sd))
 	{

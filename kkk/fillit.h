@@ -32,7 +32,7 @@ char 	*buf19(int ret, char *str, char *buf, char *c);
 char    *ft_tet(char *str, int fd, int ret, char *buf);
 int 	bctr(char *map, t_tetr *tetr, int cmp_sd);
 void    ft_remove(char **map, t_tetr *tetr, int i);
-char    *solve(char *str, t_tetr *tetr, int cmp_sd);
+char    *solve(t_tetr *tetr, int cmp_sd);
 int     ft_sqrt(char *str);
 int     paste(char **map, char *str, int cmp_sdm, int d);
 void	mapper(int cmp_sd, char **map);

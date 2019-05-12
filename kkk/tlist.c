@@ -60,18 +60,4 @@ t_tetr *tlist(char *str)
 	}
 	tetr->next = NULL;
 	return (nachalo);
-}/*
-int main()
-{
-	t_tetr *priv;
-	int i = 3;
-	char str[] = "12345678A12345678B12345678C";
-	priv = tlist(str);
-	while (i)
-	{
-		printf("%s\n", priv->fig);
-		priv=priv->next;
-		i--;
-	}
-	//printf("%s\n", priv->fig);
-}*/
+}

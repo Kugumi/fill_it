@@ -100,7 +100,7 @@ int		main(int argc, char **argv)
 		str = ft_tet(str, fd, ret, buf);
 		tetr = tlist(str);
 		printf("\n%s\n", str);
-		str = solve(str, tetr, ft_sqrt(str));
+		str = solve(tetr, ft_sqrt(str));
 		printf("%s\n", str);
 	}
 	else
