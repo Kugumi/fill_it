@@ -26,7 +26,7 @@ int paste(char **map, char *str, int cmp_sd, int d)
 		i++;
 		str_i++;
 	}
-	while (d != (cmp_sd * (cmp_sd + 1) - 2))
+	while (d != cmp_sd * (cmp_sd + 1))
 	{
 		if (map[0][box[0] + d] == '.' && map[0][box[1] + d] == '.' && map[0][box[2] + d] == '.' && map[0][box[3] + d] == '.')
 		{
@@ -42,7 +42,7 @@ int paste(char **map, char *str, int cmp_sd, int d)
 int		ft_sqrt(char *str)
 {
 	int		cmp_sd;
-	int		i;
+	size_t	i;
 
 	cmp_sd = 1;
 	i = ft_strlen(str) / 9 * 4;
@@ -65,26 +65,22 @@ void	ft_remove(char **map, t_tetr *tetr)
 		i++;
 	}
 }
-char	*bctr(char *map, t_tetr *tetr, int cmp_sd, int i)
+int		bctr(char *map, t_tetr *tetr, int cmp_sd)
 {
     char    *t;
+	int 	i;
 
-    if (paste(&map, tetr->fig, cmp_sd, i))
-    {
-    	if (tetr->next == NULL)
-    		return (map);
-    	t = bctr(map, tetr->next, cmp_sd, i);
-    	if (t)
-    		return (t);
-    }
-    if (tetr->prev)
-    {
-    	ft_remove(&map, tetr = tetr->prev);
-    	return (bctr(map, tetr, cmp_sd, i + 1));
-    }
-    if (i == cmp_sd * (cmp_sd + 1))
-		return (NULL);
-	return (map);
+	i = -1;
+	if (!tetr)
+		return (1);
+	while (++i < (cmp_sd * (cmp_sd + 1)))
+	{
+		if (paste(&map, tetr->fig, cmp_sd, i))
+			if (bctr(map, tetr->next, cmp_sd))
+				return (1);
+		ft_remove(&map, tetr);
+	}
+	return (0);
 }
 
 char	*solve(char *str, t_tetr *tetr, int cmp_sd)
@@ -96,10 +92,10 @@ char	*solve(char *str, t_tetr *tetr, int cmp_sd)
 	str_i = 0;
 	map = ft_strnew(131);
 	mapper(cmp_sd, &map);
-	while (!(bctr(map, tetr, cmp_sd, 0)))
+	while (!bctr(map, tetr, cmp_sd))
 	{
 		cmp_sd++;
-		map = mapper(cmp_sd, &map);
+		mapper(cmp_sd, &map);
 	}
 	return (map);
 }

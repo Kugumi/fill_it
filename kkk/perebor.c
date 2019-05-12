@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/04/18 19:42:23 by jijerde          ###   ########.fr       */
+/*   Updated: 2019/05/12 15:21:48 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ char	*bigmap(char *str) // размер карты и ее заполнение 
 //	return (map);
 }
 */
-char	*mapper(int cmp_sd, char **map)
+
+void	mapper(int cmp_sd, char **map)
 {
 	int		fill;
 
