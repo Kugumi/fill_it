@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/05/12 15:21:48 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/05/12 20:17:16 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char 	*buf19(int ret, char *str, char *buf, char *c)
 		buf[ret] = '\0';
 		if (ft_validate(buf, ret))
 		{
-			tmp = ft_strjoin(str, ft_cuttetr(ft_cup(buf, &c)));
+			tmp = ft_strjoin(str, ft_cuttetr(ft_cup(buf, c)));
 			free(str);
 			str = tmp;
 		}
@@ -61,7 +61,7 @@ char	*ft_tet(char *str, int fd, int ret, char *buf)
 		}
 	}
 	if (ret != 21)
-		str = buf19(ret, str, buf, c);
+		str = buf19(ret, str, buf, &c);
 	return (str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jijerde <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 21:01:46 by jijerde           #+#    #+#             */
-/*   Updated: 2019/05/12 15:22:02 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/05/12 20:16:58 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_tetr
 char 	*buf19(int ret, char *str, char *buf, char *c);
 char    *ft_tet(char *str, int fd, int ret, char *buf);
 int 	bctr(char *map, t_tetr *tetr, int cmp_sd);
-void    ft_remove(char **map, t_tetr *tetr);
+void    ft_remove(char **map, t_tetr *tetr, int i);
 char    *solve(char *str, t_tetr *tetr, int cmp_sd);
 int     ft_sqrt(char *str);
 int     paste(char **map, char *str, int cmp_sdm, int d);

@@ -51,13 +51,13 @@ int		ft_sqrt(char *str)
 	return (cmp_sd);
 }
 
-void	ft_remove(char **map, t_tetr *tetr)
+void	ft_remove(char **map, t_tetr *tetr, int i)
 {
-	int i;
+	//int i;
 	char tmp[10] = "";
 	char	*s;
 	s = ft_strcpy(tmp, tetr->fig);
-	i = 0;
+	//i = 0;
 	while (map[0][i])
 	{
 		if (map[0][i] == s[8])
@@ -78,7 +78,7 @@ int		bctr(char *map, t_tetr *tetr, int cmp_sd)
 		if (paste(&map, tetr->fig, cmp_sd, i))
 			if (bctr(map, tetr->next, cmp_sd))
 				return (1);
-		ft_remove(&map, tetr);
+		ft_remove(&map, tetr, i);
 	}
 	return (0);
 }
@@ -87,7 +87,7 @@ char	*solve(char *str, t_tetr *tetr, int cmp_sd)
 {
 	char	*map;
 
-	map = ft_strnew(131);
+	map = ft_strnew(1000);
 	mapper(cmp_sd, &map);
 	while (!bctr(map, tetr, cmp_sd))
 	{
