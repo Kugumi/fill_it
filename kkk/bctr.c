@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int paste(char **map, char *str, int cmp_sd, int d)
+int paste(char *map, char *str, int cmp_sd, int d)
 {
 	int		box[4];
 	int		i;
@@ -28,10 +28,10 @@ int paste(char **map, char *str, int cmp_sd, int d)
 	}
 	while (d != cmp_sd * (cmp_sd + 1))
 	{
-		if (map[0][box[0] + d] == '.' && map[0][box[1] + d] == '.' && map[0][box[2] + d] == '.' && map[0][box[3] + d] == '.')
+		if (map[box[0] + d] == '.' && map[box[1] + d] == '.' && map[box[2] + d] == '.' && map[box[3] + d] == '.')
 		{
 			while (i-- != 0)
-				map[0][box[i] + d] = str[str_i + 4];
+				map[box[i] + d] = str[str_i + 4];
 			return (1);
 		}
 		d++;
@@ -51,18 +51,12 @@ int		ft_sqrt(char *str)
 	return (cmp_sd);
 }
 
-void	ft_remove(char **map, t_tetr *tetr, int i)
+void	ft_remove(char *map, t_tetr *tetr, int i)
 {
-	//int i;
-	char	tmp[10] = "";
-	char	*s;
-
-	s = ft_strcpy(tmp, tetr->fig);
-	//i = 0;
-	while (map[0][i])
+	while (map[i])
 	{
-		if (map[0][i] == s[8])
-			map[0][i] = '.';
+		if (map[i] == tetr->fig[8])
+			map[i] = '.';
 		i++;
 	}
 }
@@ -76,12 +70,12 @@ int		bctr(char *map, t_tetr *tetr, int cmp_sd)
 		return (1);
 	while (++i < (cmp_sd * (cmp_sd + 1)))
 	{
-		 if (paste(&map, tetr->fig, cmp_sd, i))
+		 if (paste(map, tetr->fig, cmp_sd, i))
          {
 		     if (bctr(map, tetr->next, cmp_sd))
                 return (1);
 		     else
-                ft_remove(&map, tetr, i);
+                ft_remove(map, tetr, i);
 		 }
 	}
 	return (0);
@@ -92,11 +86,11 @@ char	*solve(t_tetr *tetr, int cmp_sd)
 	char	*map;
 
 	map = ft_strnew(cmp_sd * (cmp_sd + 1));
-	mapper(cmp_sd, &map);
+	mapper(cmp_sd, map);
 	while (!bctr(map, tetr, cmp_sd))
 	{
 		cmp_sd++;
-		mapper(cmp_sd, &map);
+		mapper(cmp_sd, map);
 	}
 	return (map);
 }

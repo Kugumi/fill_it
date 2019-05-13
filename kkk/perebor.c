@@ -65,7 +65,7 @@ char	*ft_tet(char *str, int fd, int ret, char *buf)
 	return (str);
 }
 
-void	mapper(int cmp_sd, char **map)
+void	mapper(int cmp_sd, char *map)
 {
 	int		fill;
 
@@ -74,16 +74,16 @@ void	mapper(int cmp_sd, char **map)
 	{
 		if ((fill + 1) % (cmp_sd + 1) != 0 || fill == 0)
 		{
-            map[0][fill] = '.';
+            map[fill] = '.';
 			fill++;
 		}
 		else
 		{
-			map[0][fill] = '\n';
+			map[fill] = '\n';
 			fill++;
 		}
 	}
-	map[0][fill] = '\0';
+	map[fill] = '\0';
 }
 
 int		main(int argc, char **argv)
