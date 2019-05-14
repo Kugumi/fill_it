@@ -12,11 +12,11 @@
 
 #include "fillit.h"
 
-char 	*buf19(int ret, char *str, char *buf, char *c)
+char	*buf19(ssize_t ret, char *str, char *buf, char *c)
 {
-	char	*tmp;
+	char		*tmp;
 
-	if (ret == 19)
+	if (ret == 20)
 	{
 		buf[ret] = '\0';
 		if (ft_validate(buf, ret))
@@ -39,10 +39,12 @@ char 	*buf19(int ret, char *str, char *buf, char *c)
 	return (str);
 }
 
-char	*ft_tet(char *str, int fd, int ret, char *buf)
+char	*ft_tet(int fd, char *buf)
 {
 	char		*tmp;
 	static char	c = '@';
+	char		*str;
+	ssize_t		ret;
 
 	str = ft_strnew(0);
 	while ((ret = read(fd, buf, 21)) == 21)
@@ -65,16 +67,16 @@ char	*ft_tet(char *str, int fd, int ret, char *buf)
 	return (str);
 }
 
-void	mapper(int cmp_sd, char *map)
+void	mapper(size_t cmp_sd, char *map)
 {
-	int		fill;
+	size_t		fill;
 
 	fill = 0;
 	while (fill < (cmp_sd * (cmp_sd + 1) - 1))
 	{
 		if ((fill + 1) % (cmp_sd + 1) != 0 || fill == 0)
 		{
-            map[fill] = '.';
+			map[fill] = '.';
 			fill++;
 		}
 		else
@@ -83,6 +85,7 @@ void	mapper(int cmp_sd, char *map)
 			fill++;
 		}
 	}
+	fill++;
 	map[fill] = '\0';
 }
 
@@ -91,19 +94,24 @@ int		main(int argc, char **argv)
 	int			fd;
 	char		buf[22];
 	char		*str;
-	int			ret;
-	t_tetr 		*tetr;
+	char		*tmp;
+	t_tetr		*tetr;
 
+	tetr = NULL;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		str = ft_tet(str, fd, ret, buf);
+		str = ft_tet(fd, buf);
 		tetr = tlist(str);
-		printf("\n%s\n", str);
+		tmp = str;
 		str = solve(tetr, ft_sqrt(str));
-		printf("%s\n", str);
+		free(tmp);
+		write(1, str, ft_strlen(str));
+		write(1, "\n", 1);
+		free(str);
 	}
 	else
-		printf("Error: No more than 1 argument.");
+		write(1, "usage: ./fillit source_file\n", 29);
+	freetlist(tetr);
 	return (0);
 }

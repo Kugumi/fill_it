@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 13:32:35 by dstracke          #+#    #+#             */
-/*   Updated: 2019/03/21 15:07:32 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/05/14 18:11:02 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int		ft_connect_count(char *s, int i)
 	return (counter);
 }
 
-int		ft_check_backslash(char *s, int i, int ret)
+int		ft_check_backslash(int i, ssize_t ret)
 {
-	if (ret == 19)
+	if (ret == 20)
 	{
 		if (i == 4 || i == 9 || i == 14 || i == 19)
 			return (1);
@@ -48,17 +48,17 @@ int		ft_check_backslash(char *s, int i, int ret)
 		return (0);
 }
 
-int		ft_prov_kol(int i, int j, int ret, int t)
+int		ft_prov_kol(int i, int j, ssize_t ret, int t)
 {
 	if (ret == 21 && (i == 6 || i == 8) && j == 5 && t == 4)
 		return (1);
-	else if (ret == 19 && (i == 6 || i == 8) && j == 3 && t == 4)
+	else if (ret == 20 && (i == 6 || i == 8) && j == 4 && t == 4)
 		return (1);
 	else
 		return (0);
 }
 
-int		ft_validate(char *buf, int ret)
+int		ft_validate(char *buf, ssize_t ret)
 {
 	int		y;
 	int		i;
@@ -77,13 +77,13 @@ int		ft_validate(char *buf, int ret)
 			y++;
 			t++;
 		}
-		else if (buf[y] == '.')
-			y++;
 		else if (buf[y] == '\n')
 		{
-			j = j + ft_check_backslash(buf, y, ret);
+			j = j + ft_check_backslash(y, ret);
 			y++;
 		}
+		else
+			y++;
 	}
 	return (ft_prov_kol(i, j, ret, t));
 }
@@ -158,6 +158,5 @@ char	*ft_cup(char *buf, char *c)
 	*c = *c + 1;
 	tmp[j + 4] = *c;
 	tmp[j + 5] = '\0';
-	printf("%s", tmp);
 	return (tmp);
 }

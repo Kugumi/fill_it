@@ -10,19 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "fillit.h"
 
-t_tetr *firstlist(char *str)
+t_tetr	*firstlist(char *str)
 {
-	int i;
-	t_tetr *tetr;
-	char tmp[10];
+	int		i;
+	t_tetr	*tetr;
+	char	tmp[10];
 
 	i = 0;
 	tetr = (t_tetr *)malloc(sizeof(t_tetr));
 	tetr->next = NULL;
-	tetr->prev = NULL;
 	tetr->fig = (char *)malloc(sizeof(char) * 10);
 	tmp[9] = '\0';
 	while (i < 9)
@@ -34,14 +32,13 @@ t_tetr *firstlist(char *str)
 	return (tetr);
 }
 
-t_tetr *tlist(char *str)
+t_tetr	*tlist(char *str)
 {
-	int i;
-	int str_i;
-	t_tetr *tetr;
-	t_tetr *nachalo;
-	t_tetr *temp;
-	char tmp[10];
+	int		i;
+	int		str_i;
+	char	tmp[10];
+	t_tetr	*tetr;
+	t_tetr	*nachalo;
 
 	str_i = 9;
 	tetr = firstlist(str);
@@ -50,9 +47,7 @@ t_tetr *tlist(char *str)
 	while (str[str_i] && !(i = 0))
 	{
 		tetr->next = (t_tetr *)malloc(sizeof(t_tetr));
-		temp = tetr;
-		tetr=tetr->next;
-		tetr->prev = temp;
+		tetr = tetr->next;
 		tetr->fig = (char *)malloc(sizeof(char) * 10);
 		while (i < 9)
 			tmp[i++] = str[str_i++];

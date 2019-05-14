@@ -1,32 +1,45 @@
 NAME = fillit
 
-LIB = libft/libft.a
+SRC =	bctr.c joski_fillit.c perebor.c tlist.c freetlist.c
 
-SRCDIR = src/
-
-INCDIR = 
-
-SRC = bctr.c joskii_fillit.c perebor.c tlist.c
-
-INC = -I libft
-
-OBJ = (addprefix $(FILE):./*.o
-
-FLAG = -Wall -Wextra -Werror -I. -c
+INCLUDES = -I ./includes
+OBJECTS = $(SRC:.c=.o)
+FLAGS = -Wall -Wextra -Werror
+CC = gcc
+LIBFT = ./libft/libft.a
+LIBLINK = -L ./libft -lft
+LIBINK = -I ./libft
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+%.o:%.c
+	@$(CC) $(FLAGS) $(LIBINK) $(INCLUDES) -o $@ -c $< -g
 
-$(OBJ): $(SRC)
-	@gcc $(FLAG) $(SRC)
+libft: $(LIBFT)
 
-claen:
-	@rm -f $(OBJ)
+$(LIBFT):
+	@echo "Compiling libft..."
+	@make -C ./libft
+	@echo "OK"
 
-fclean:
-	@rm -f $(NAME)
+$(NAME): libft $(OBJECTS)
+	@echo "Compiling fillit..."
+	@$(CC) $(LIBLINK) -o $(NAME) $(OBJECTS) -g
+	@echo "OK"
+
+rmlib:
+	@echo "Deliting libft objects files..."
+	@make fclean -C ./libft
+	@echo "OK"
+
+clean: rmlib
+	@echo "Deliting fillit objects files..."
+	@rm -rf $(OBJECTS)
+	@echo "OK"
+
+fclean: clean
+	@echo "Deliting fillit..."
+	@rm -rf $(NAME)
+	@echo "OK"
 
 re: fclean all

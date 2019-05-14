@@ -6,7 +6,7 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 12:28:46 by dstracke          #+#    #+#             */
-/*   Updated: 2019/04/18 15:50:59 by jijerde          ###   ########.fr       */
+/*   Updated: 2019/05/14 18:09:16 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ int		word_counter(char const *s, char c)
 	}
 	return (j);
 }
-
-/*  char	*ft_strndup(const char *s, size_t n)
-{
-	char *t;
-
-	if (!(t = (char *)malloc(sizeof(char) * (n + 1))))
-		return (NULL);
-	t[n] = '\0';
-	while (n--)
-		t[n] = s[n];
-	return (t);
-}*/
 
 void	ft_freewd(char **str, int l)
 {
