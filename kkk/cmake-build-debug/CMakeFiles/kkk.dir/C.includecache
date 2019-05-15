@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/dstracke/Desktop/last_step/kkk/fillit.h
+unistd.h
+-
+fcntl.h
+-
+libft/libft.h
+/Users/dstracke/Desktop/last_step/kkk/libft/libft.h
+stdlib.h
+-
+stdio.h
+-
+
+/Users/dstracke/Desktop/last_step/kkk/joski_fillit.c
+fillit.h
+/Users/dstracke/Desktop/last_step/kkk/fillit.h
+
+/Users/dstracke/Desktop/last_step/kkk/libft/libft.h
+stdlib.h
+-
+unistd.h
+-
+string.h
+-
+

@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 # include <stdlib.h>
+# include <stdio.h>
 
 typedef	struct		s_tetr
 {
@@ -24,6 +25,10 @@ typedef	struct		s_tetr
 	struct s_tetr	*next;
 }					t_tetr;
 
+char				ft_cut1(char *tmp);
+void				ft_cut2(char *tmp, char mini);
+char				ft_cut3(char *tmp);
+void				ft_cut4(char *tmp, char minj);
 char				*buf19(ssize_t ret, char *str, char *buf, char *c);
 char				*ft_tet(int fd, char *buf);
 int					bctr(char *map, t_tetr *tetr, size_t cmp_sd);
