@@ -79,4 +79,4 @@ add_executable(kkk
         joski_fillit.c
         perebor.c
         test.txt
-        tlist.c)
+        tlist.c ft_cuttetr.c)

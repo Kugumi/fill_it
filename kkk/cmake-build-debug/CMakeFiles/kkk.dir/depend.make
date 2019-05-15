@@ -9,6 +9,8 @@ CMakeFiles/kkk.dir/freetlist.c.o: ../fillit.h
 CMakeFiles/kkk.dir/freetlist.c.o: ../freetlist.c
 CMakeFiles/kkk.dir/freetlist.c.o: ../libft/libft.h
 
+CMakeFiles/kkk.dir/ft_cuttetr.c.o: ../ft_cuttetr.c
+
 CMakeFiles/kkk.dir/joski_fillit.c.o: ../fillit.h
 CMakeFiles/kkk.dir/joski_fillit.c.o: ../joski_fillit.c
 CMakeFiles/kkk.dir/joski_fillit.c.o: ../libft/libft.h

@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/dstracke/Desktop/last_step/kkk/bctr.c" "/Users/dstracke/Desktop/last_step/kkk/cmake-build-debug/CMakeFiles/kkk.dir/bctr.c.o"
   "/Users/dstracke/Desktop/last_step/kkk/freetlist.c" "/Users/dstracke/Desktop/last_step/kkk/cmake-build-debug/CMakeFiles/kkk.dir/freetlist.c.o"
+  "/Users/dstracke/Desktop/last_step/kkk/ft_cuttetr.c" "/Users/dstracke/Desktop/last_step/kkk/cmake-build-debug/CMakeFiles/kkk.dir/ft_cuttetr.c.o"
   "/Users/dstracke/Desktop/last_step/kkk/joski_fillit.c" "/Users/dstracke/Desktop/last_step/kkk/cmake-build-debug/CMakeFiles/kkk.dir/joski_fillit.c.o"
   "/Users/dstracke/Desktop/last_step/kkk/libft/ft_atoi.c" "/Users/dstracke/Desktop/last_step/kkk/cmake-build-debug/CMakeFiles/kkk.dir/libft/ft_atoi.c.o"
   "/Users/dstracke/Desktop/last_step/kkk/libft/ft_bzero.c" "/Users/dstracke/Desktop/last_step/kkk/cmake-build-debug/CMakeFiles/kkk.dir/libft/ft_bzero.c.o"

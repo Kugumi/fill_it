@@ -177,6 +177,33 @@ freetlist.c.s:
 	$(MAKE) -f CMakeFiles/kkk.dir/build.make CMakeFiles/kkk.dir/freetlist.c.s
 .PHONY : freetlist.c.s
 
+ft_cuttetr.o: ft_cuttetr.c.o
+
+.PHONY : ft_cuttetr.o
+
+# target to build an object file
+ft_cuttetr.c.o:
+	$(MAKE) -f CMakeFiles/kkk.dir/build.make CMakeFiles/kkk.dir/ft_cuttetr.c.o
+.PHONY : ft_cuttetr.c.o
+
+ft_cuttetr.i: ft_cuttetr.c.i
+
+.PHONY : ft_cuttetr.i
+
+# target to preprocess a source file
+ft_cuttetr.c.i:
+	$(MAKE) -f CMakeFiles/kkk.dir/build.make CMakeFiles/kkk.dir/ft_cuttetr.c.i
+.PHONY : ft_cuttetr.c.i
+
+ft_cuttetr.s: ft_cuttetr.c.s
+
+.PHONY : ft_cuttetr.s
+
+# target to generate assembly for a file
+ft_cuttetr.c.s:
+	$(MAKE) -f CMakeFiles/kkk.dir/build.make CMakeFiles/kkk.dir/ft_cuttetr.c.s
+.PHONY : ft_cuttetr.c.s
+
 joski_fillit.o: joski_fillit.c.o
 
 .PHONY : joski_fillit.o
@@ -2028,6 +2055,9 @@ help:
 	@echo "... freetlist.o"
 	@echo "... freetlist.i"
 	@echo "... freetlist.s"
+	@echo "... ft_cuttetr.o"
+	@echo "... ft_cuttetr.i"
+	@echo "... ft_cuttetr.s"
 	@echo "... joski_fillit.o"
 	@echo "... joski_fillit.i"
 	@echo "... joski_fillit.s"

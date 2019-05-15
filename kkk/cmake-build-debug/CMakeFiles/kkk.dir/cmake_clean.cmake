@@ -69,6 +69,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/kkk.dir/joski_fillit.c.o"
   "CMakeFiles/kkk.dir/perebor.c.o"
   "CMakeFiles/kkk.dir/tlist.c.o"
+  "CMakeFiles/kkk.dir/ft_cuttetr.c.o"
   "kkk.pdb"
   "kkk"
 )
