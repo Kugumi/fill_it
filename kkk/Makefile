@@ -1,6 +1,7 @@
 NAME = fillit
 
-SRC =	bctr.c joski_fillit.c perebor.c tlist.c freetlist.c
+SRC = srcs/bctr.c srcs/fillit.c srcs/mainer.c \
+	  srcs/tlist.c srcs/cuttetr.c srcs/validation.c
 
 INCLUDES = -I ./includes
 OBJECTS = $(SRC:.c=.o)
