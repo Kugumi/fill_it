@@ -50,19 +50,21 @@ char	*ft_tet(int fd, char *buf)
 	str = ft_strnew(0);
 	while ((ret = read(fd, buf, 21)) == 21)
 	{
-		buf[ret] = '\0';
-		if (ft_validate(buf, ret))
+		if (!(buf[ret] = '\0') && ft_validate(buf, ret))
 		{
 			tmp = ft_strjoin(str, ft_cuttetr(ft_cup(buf, &c)));
 			free(str);
 			str = tmp;
 		}
 		else
+		{
 			str = errfree(str);
-		if (ft_strlen(str) > 233)
-			str = errfree(str);
+			break ;
+		}
 	}
-	if (ret != 21)
+	if (str && (ft_strlen(str) > 233))
+		str = errfree(str);
+	if (str && (ret < 21))
 		str = buf19(ret, str, buf, &c);
 	return (str);
 }
