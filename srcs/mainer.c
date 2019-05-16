@@ -6,11 +6,18 @@
 /*   By: dstracke <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 15:06:05 by dstracke          #+#    #+#             */
-/*   Updated: 2019/05/15 22:31:58 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/05/16 05:02:18 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+char	*errfree(char *str)
+{
+	write(1, "error\n", 6);
+	free(str);
+	return (NULL);
+}
 
 char	*buf19(ssize_t ret, char *str, char *buf, char *c)
 {
@@ -26,16 +33,10 @@ char	*buf19(ssize_t ret, char *str, char *buf, char *c)
 			str = tmp;
 		}
 		else
-		{
-			write(1, "error\n", 6);
-			return (NULL);
-		}
+			str = errfree(str);
 	}
 	else
-	{
-		write(1, "error\n", 6);
-		return (NULL);
-	}
+		str = errfree(str);
 	return (str);
 }
 
@@ -57,10 +58,9 @@ char	*ft_tet(int fd, char *buf)
 			str = tmp;
 		}
 		else
-		{
-			write(1, "error\n", 6);
-			return (NULL);
-		}
+			str = errfree(str);
+		if (ft_strlen(str) > 233)
+			str = errfree(str);
 	}
 	if (ret != 21)
 		str = buf19(ret, str, buf, &c);
@@ -101,18 +101,19 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		str = ft_tet(fd, buf);
-		tetr = tlist(str);
-		tmp = str;
-		str = solve(tetr, ft_sqrt(str));
-		free(tmp);
-		write(1, str, ft_strlen(str));
-		write(1, "\n", 1);
-		free(str);
+		if ((str = ft_tet(fd, buf)))
+		{
+			tetr = tlist(str);
+			tmp = str;
+			str = solve(tetr, ft_sqrt(str));
+			free(tmp);
+			write(1, str, ft_strlen(str));
+			write(1, "\n", 1);
+			free(str);
+		}
 	}
 	else
-		write(1, "usage: ./fillit source_file\n", 29);
-	if (tetr)
-		freetlist(tetr);
+		write(1, "usage: ./fillit source_file\n", 28);
+	freetlist(tetr);
 	return (0);
 }

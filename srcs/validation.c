@@ -78,6 +78,10 @@ int		ft_validate(char *buf, ssize_t ret)
 		}
 		else if (buf[y] == '\n')
 			j = j + ft_check_backslash(y, ret);
+		else if (buf[y] == '.')
+			;
+		else
+			return (0);
 		y++;
 	}
 	return (ft_prov_kol(i, j, ret, t));

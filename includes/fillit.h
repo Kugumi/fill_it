@@ -6,7 +6,7 @@
 /*   By: jijerde <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 21:01:46 by jijerde           #+#    #+#             */
-/*   Updated: 2019/05/15 22:21:10 by dstracke         ###   ########.fr       */
+/*   Updated: 2019/05/16 02:34:38 by dstracke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef	struct		s_tetr
 {
@@ -25,6 +24,7 @@ typedef	struct		s_tetr
 	struct s_tetr	*next;
 }					t_tetr;
 
+char				*errfree(char *str);
 char				*ft_letter(char *tmp, int j, char *c);
 char				ft_cut1(char *tmp);
 void				ft_cut2(char *tmp, char mini);
